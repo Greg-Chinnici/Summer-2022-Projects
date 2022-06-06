@@ -3,6 +3,8 @@
 #include <cmath>
 using namespace::std;
 
+//this can be modifed to be a noise map generator, just using doubles in range(0,1)
+//TODO:: generate the cascading numbers, the translating is done
 int main() {
     int sideLen;// only works with odd numbers
     cout << "Enter a side length (odd): " ;
@@ -30,12 +32,14 @@ LightLevelDict[8] = '%';
 LightLevelDict[9] = '@';
 
 
+//could just loop throught the whole thing then add index to a list once they are processed, 9 -> 0 then 0 -> gridSize
+
 //check for reach poit if  the connect are less, if so then make it 1 one then the current spot
 //TODO:: figure out how to check each idex starting with the high numbers (obviously)
 int highPoint = gridSize/2; //direct center, can be randomized later when I figure out the bound issues,
 // also want to make mutiple highpoints, could just run another iteration on the same grid before a print, will have to rewor the int changer
 //the added highpoints will be randomized with a top 80% bais to the max height
-int maxHeight;// only works with odd numbers
+int maxHeight;
     cout << "Enter a max height (under 10): " ;
     cin >> maxHeight;
 grid[highPoint] = maxHeight;
@@ -161,4 +165,78 @@ for (int index = 0 ; index < 49 ; index++){
 }
 
 }
+*/
+
+//WAY better pallete
+/*
+//for light level refrence later
+   map<int,char> BetterLightLevelDict; //light to dark
+$@B%8&WM#*oahkbdpqwmZO0QLCJUYXzcvunxrjft/\|()1{}[]?-_+~<>i!lI;:,"^`'.
+
+BetterLightLevelDict[0] = '$';
+BetterLightLevelDict[1] = '@';
+BetterLightLevelDict[2] = 'B';
+BetterLightLevelDict[3] = '%';
+BetterLightLevelDict[4] = '8';
+BetterLightLevelDict[5] = 'W';
+BetterLightLevelDict[6] = 'M';
+BetterLightLevelDict[7] = '#';
+BetterLightLevelDict[8] = '*';
+BetterLightLevelDict[9] = 'o';
+BetterLightLevelDict[10] = 'a';
+BetterLightLevelDict[11] = 'h';
+BetterLightLevelDict[12] = 'k';
+BetterLightLevelDict[13] = 'b';
+BetterLightLevelDict[14] = 'd';
+BetterLightLevelDict[15] = 'p';
+BetterLightLevelDict[16] = 'q';
+BetterLightLevelDict[17] = 'w';
+BetterLightLevelDict[18] = 'm';
+BetterLightLevelDict[19] = 'Z';
+BetterLightLevelDict[20] = 'O';
+BetterLightLevelDict[21] = '0';
+BetterLightLevelDict[22] = 'Q';
+BetterLightLevelDict[23] = 'L';
+BetterLightLevelDict[24] = 'C';
+BetterLightLevelDict[25] = 'J';
+BetterLightLevelDict[26] = 'U';
+BetterLightLevelDict[27] = 'Y';
+BetterLightLevelDict[28] = 'X';
+BetterLightLevelDict[29] = 'z';
+BetterLightLevelDict[30] = 'c';
+BetterLightLevelDict[31] = 'v';
+BetterLightLevelDict[32] = 'u';
+BetterLightLevelDict[33] = 'n';
+BetterLightLevelDict[34] = 'x';
+BetterLightLevelDict[35] = 'r';
+BetterLightLevelDict[36] = 'j';
+BetterLightLevelDict[37] = 'f';
+BetterLightLevelDict[38] = 't';
+BetterLightLevelDict[39] = '/';
+BetterLightLevelDict[40] = '\';
+BetterLightLevelDict[41] = '|';
+BetterLightLevelDict[42] = '(';
+BetterLightLevelDict[43] = ')';
+BetterLightLevelDict[44] = '1';
+BetterLightLevelDict[45] = '{';
+BetterLightLevelDict[46] = '}';
+BetterLightLevelDict[47] = '[';
+BetterLightLevelDict[48] = ']';
+BetterLightLevelDict[49] = '?';
+BetterLightLevelDict[50] = '-';
+BetterLightLevelDict[51] = '_';
+BetterLightLevelDict[52] = '+';
+BetterLightLevelDict[53] = '~';
+BetterLightLevelDict[54] = '<';
+BetterLightLevelDict[55] = '>';
+BetterLightLevelDict[56] = 'i';
+BetterLightLevelDict[57] = '!';
+BetterLightLevelDict[58] = 'I';
+BetterLightLevelDict[59] = ';';
+BetterLightLevelDict[60] = ':';
+BetterLightLevelDict[61] = ',';
+BetterLightLevelDict[62] = '"';
+BetterLightLevelDict[63] = '^';
+BetterLightLevelDict[64] = ''';
+
 */
