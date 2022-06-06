@@ -5,10 +5,10 @@ using namespace::std;
 
 int main() {
     int sideLen;// only works with odd numbers
-    cout << "enter a side length: " ;
+    cout << "Enter a side length (odd): " ;
     cin >> sideLen;
   
-    int gridSize = sideLen * sideLen;
+int gridSize = sideLen * sideLen;
 int grid[gridSize];
 for (int index = 0 ; index < gridSize ; index++){
     grid[index] = 0;
@@ -16,7 +16,7 @@ for (int index = 0 ; index < gridSize ; index++){
 
 
 //for light level refrence later
-   map<int,char> LightLevelDict; //light to dark
+map<int,char> LightLevelDict; //light to dark
 // .:-=+*#%@
 LightLevelDict[0] = '_';
 LightLevelDict[1] = '.';
@@ -34,7 +34,7 @@ LightLevelDict[9] = '@';
 //TODO:: figure out how to check each idex starting with the high numbers (obviously)
 int highPoint = gridSize/2; //direct center, can be randomized later when i figure out the bound issues, also want to make mutiple highpoints, could just run another iteration on the same grid
 int maxHeight;// only works with odd numbers
-    cout << "enter a max height (under 10): " ;
+    cout << "Enter a max height (under 10): " ;
     cin >> maxHeight;
 grid[highPoint] = maxHeight;
 
@@ -57,25 +57,34 @@ for (int index = 0 ; index < gridSize ; index++){
     }
 }
 
+bool boolSeeValues = false;
+    cout << "Do you want to see inside the machine (y/n): " ;
+    char seeValues;
+    cin >> seeValues;
+    if (seeValues == 'y'){
+        boolSeeValues = true;
+    }
+
+//print grid numbers
+if (boolSeeValues){
+for (int index = 0 ; index < gridSize ; index++){
+
+    cout << grid[index] << " ";
+    if ((index + 1) % sideLen == 0){
+        cout << endl;
+    }
+}
+cout << endl << endl;
+}
 //print light levels aka height
 for (int index = 0 ; index < gridSize ; index++){
     int lightLevel = grid[index];
     cout << LightLevelDict[lightLevel] << " ";
     if ((index + 1) % sideLen == 0){
-                cout << endl;
-            }
+        cout << endl;
+    }
 }
 
-cout << endl << endl;
-
-//print grid numbers
-for (int index = 0 ; index < gridSize ; index++){
-
-    cout << grid[index] << " ";
-    if ((index + 1) % sideLen == 0){
-                cout << endl;
-            }
-}
 
 }
 
