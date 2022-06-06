@@ -18,7 +18,7 @@ for (int index = 0 ; index < gridSize ; index++){
 //for light level refrence later
 map<int,char> LightLevelDict; //light to dark
 // .:-=+*#%@
-LightLevelDict[0] = '_';
+LightLevelDict[0] = '_';//cant use a "space" " " as a char, turns into zero width char
 LightLevelDict[1] = '.';
 LightLevelDict[2] = ':';
 LightLevelDict[3] = '-';
@@ -32,22 +32,33 @@ LightLevelDict[9] = '@';
 
 //check for reach poit if  the connect are less, if so then make it 1 one then the current spot
 //TODO:: figure out how to check each idex starting with the high numbers (obviously)
-int highPoint = gridSize/2; //direct center, can be randomized later when i figure out the bound issues, also want to make mutiple highpoints, could just run another iteration on the same grid
+int highPoint = gridSize/2; //direct center, can be randomized later when I figure out the bound issues,
+// also want to make mutiple highpoints, could just run another iteration on the same grid before a print, will have to rewor the int changer
+//the added highpoints will be randomized with a top 80% bais to the max height
 int maxHeight;// only works with odd numbers
     cout << "Enter a max height (under 10): " ;
     cin >> maxHeight;
 grid[highPoint] = maxHeight;
 
-//could eventually override with a random number, bu this is more control 
+//could eventually override with a random number, but this is more control 
 int NorthSlope = 1;
 int SouthSlope = 1;
 int WestSlope = 1;
 int EastSlope = 1;
 
+//check if the number is higher
+if (grid[highPoint + sideLen] < grid[highPoint]){
 grid[highPoint + sideLen] = grid[highPoint] - NorthSlope; //down 1
+}
+if (grid[highPoint - sideLen] < grid[highPoint]){
 grid[highPoint - sideLen] = grid[highPoint] - SouthSlope; //up 1
+}
+if (grid[highPoint + 1] < grid[highPoint]){
 grid[highPoint + 1] = grid[highPoint] - WestSlope; //right 1 
+}
+if (grid[highPoint - 1] < grid[highPoint]){
 grid[highPoint - 1] = grid[highPoint] - EastSlope; // left 1
+}
 
 
 //make all negatives into a zero
