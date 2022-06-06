@@ -1,0 +1,144 @@
+#include <iostream>
+#include <map>
+#include <cmath>
+using namespace::std;
+
+int main() {
+    int sideLen;// only works with odd numbers
+    cout << "enter a side length: " ;
+    cin >> sideLen;
+  
+    int gridSize = sideLen * sideLen;
+int grid[gridSize];
+for (int index = 0 ; index < gridSize ; index++){
+    grid[index] = 0;
+};
+
+
+//for light level refrence later
+   map<int,char> LightLevelDict; //light to dark
+// .:-=+*#%@
+LightLevelDict[0] = '_';
+LightLevelDict[1] = '.';
+LightLevelDict[2] = ':';
+LightLevelDict[3] = '-';
+LightLevelDict[4] = '=';
+LightLevelDict[5] = '+';
+LightLevelDict[6] = '*';
+LightLevelDict[7] = '#';
+LightLevelDict[8] = '%';
+LightLevelDict[9] = '@';
+
+
+//check for reach poit if  the connect are less, if so then make it 1 one then the current spot
+//TODO:: figure out how to check each idex starting with the high numbers (obviously)
+int highPoint = gridSize/2; //direct center, can be randomized later when i figure out the bound issues, also want to make mutiple highpoints, could just run another iteration on the same grid
+int maxHeight;// only works with odd numbers
+    cout << "enter a max height (under 10): " ;
+    cin >> maxHeight;
+grid[highPoint] = maxHeight;
+
+//could eventually override with a random number, bu this is more control 
+int NorthSlope = 1;
+int SouthSlope = 1;
+int WestSlope = 1;
+int EastSlope = 1;
+
+grid[highPoint + sideLen] = grid[highPoint] - NorthSlope; //down 1
+grid[highPoint - sideLen] = grid[highPoint] - SouthSlope; //up 1
+grid[highPoint + 1] = grid[highPoint] - WestSlope; //right 1 
+grid[highPoint - 1] = grid[highPoint] - EastSlope; // left 1
+
+
+//make all negatives into a zero
+for (int index = 0 ; index < gridSize ; index++){
+    if (grid[index] < 0){
+        grid[index] = 0;
+    }
+}
+
+//print light levels aka height
+for (int index = 0 ; index < gridSize ; index++){
+    int lightLevel = grid[index];
+    cout << LightLevelDict[lightLevel] << " ";
+    if ((index + 1) % sideLen == 0){
+                cout << endl;
+            }
+}
+
+cout << endl << endl;
+
+//print grid numbers
+for (int index = 0 ; index < gridSize ; index++){
+
+    cout << grid[index] << " ";
+    if ((index + 1) % sideLen == 0){
+                cout << endl;
+            }
+}
+
+}
+
+/*
+take in the index of the current place
+check each spot that is directly connecting 
+1234321
+2345432
+3456543
+4567654
+3456543
+2345432
+1234321
+
+. : - = - : . 
+: - = + = - : 
+- = + * + = - 
+= + * # * + = 
+- = + * + = - 
+: - = + = - : 
+. : - = - : . 
+*/
+
+//code for centered falloff
+/*
+#include <iostream>
+#include <map>
+using namespace::std;
+
+int main() {
+  int  gridSize = 49;
+int grid[49]{
+        1,2,3,4,3,2,1,
+        2,3,4,5,4,3,2,
+        3,4,5,6,5,4,3,
+        4,5,6,7,6,5,4,
+        3,4,5,6,5,4,3,
+        2,3,4,5,4,3,2,
+        1,2,3,4,3,2,1
+        };
+
+
+//for light level refrence later
+   map<int,char> LightLevelDict; //light to dark
+// .:-=+*#%@
+LightLevelDict[0] = ' ';
+LightLevelDict[1] = '.';
+LightLevelDict[2] = ':';
+LightLevelDict[3] = '-';
+LightLevelDict[4] = '=';
+LightLevelDict[5] = '+';
+LightLevelDict[6] = '*';
+LightLevelDict[7] = '#';
+LightLevelDict[8] = '%';
+LightLevelDict[9] = '@';
+
+for (int index = 0 ; index < 49 ; index++){
+    int lightLevel = grid[index];
+    cout << LightLevelDict[lightLevel] << " ";
+    if ((index + 1) % 7 == 0){
+                cout << endl;
+            }
+}
+
+}
+*/
