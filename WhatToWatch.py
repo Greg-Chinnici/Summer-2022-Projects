@@ -10,7 +10,7 @@ PLAN:
 
 #I should make an option to just userInput the index instead of the full name
 
-streamerTwitch = ["valorant", "rocketleague", "aceu", "tarik", "iitztimmy", "daltoosh", "shahzam"]
+streamerTwitch = ["valorant", "rocketleague", "aceu", "tarik", "iitztimmy", "daltoosh", "shahzam", "hiko", "kitboga"]
 def getStreamer():
     userInput = ""
     while userInput not in streamerTwitch:
@@ -52,7 +52,7 @@ def goToYoutubeLink(name):
 
 
 #songname : link , timestamp can be added also just add "&t=time" (seconds) at the end
-youtubeMusic = {"Juice WRLD FreeStyle 60 mins": "fSoT13msPe4&t" , "Juice WRLD Black and White": "aQDhBNHBQUs" , "Pop Smoke Shake The Room": "zd8uWVh8b8k" , "Yeat Minions" : "7fX2kMaiMGI"}
+youtubeMusic = {"Juice WRLD FreeStyle Eminem Beats": "fSoT13msPe4&t" , "Juice WRLD freestyle 60 mins": "igc1wYW448w" , "Juice WRLD Black and White": "aQDhBNHBQUs" , "Pop Smoke Shake The Room": "zd8uWVh8b8k" , "Yeat Minions" : "7fX2kMaiMGI" , "Big Rap Playlist": "60-l6nNyK70&list=PLD3MHnA3bEH-lPyn3I5XCbab-ULH8wn9N"}
 def getYoutubeMusic():
     userInput = -1
     while userInput not in range(len(youtubeMusic) + 1) or userInput == 0:
@@ -69,8 +69,9 @@ def goToYoutubeMusicLink(linkchars):
     timeStamp = 0 #starts at 0 seconds in
     webbrowser.get(chrome_path).open('youtube.com/watch?v=' + linkchars + "&t=" + str(timeStamp))
 #music only
-    
-    
+
+
+
 allChannels = []#used for the surprise me hidden feature
 allChannels.extend(streamerTwitch)
 allChannels.extend(youtubeChannels.values())
@@ -83,7 +84,9 @@ if watching == "twitch":
     name = getStreamer()
     goToTwitchLink(name)
 if watching == "youtube":
-    vidType = input("channel or music (c,m): ").lower()
+    vidType = ""
+    while vidType != "c" and vidType != "m":
+        vidType = input("channel or music (c,m): ").lower()
     if vidType == "c":
         name = getYoutuber()
         goToYoutubeLink(name)
