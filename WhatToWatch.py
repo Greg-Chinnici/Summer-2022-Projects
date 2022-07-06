@@ -40,7 +40,7 @@ def getYoutuber():
         userInput = input("What youtuber do you want to watch: ")
         userInput = userInput.title()
         if userInput == "Random":
-            return random.choice(youtubeChannels)
+            return random.choice(list(youtubeChannels.values()))
     userInput = youtubeChannels[userInput]
     return userInput
 
@@ -66,8 +66,9 @@ def getYoutubeMusic():
 
 def goToYoutubeMusicLink(linkchars):
     chrome_path = '"C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe" %s' #file path to the Chrome app, otherwise it opens in IE
-    webbrowser.get(chrome_path).open('youtube.com/watch?v=' + linkchars)
-    
+    timeStamp = 0 #starts at 0 seconds in
+    webbrowser.get(chrome_path).open('youtube.com/watch?v=' + linkchars + "&t=" + str(timeStamp))
+#music only
     
     
 allChannels = []#used for the surprise me hidden feature
@@ -82,8 +83,8 @@ if watching == "twitch":
     name = getStreamer()
     goToTwitchLink(name)
 if watching == "youtube":
-    vidType = input("video or music (v,m): ").lower()
-    if vidType == "v":
+    vidType = input("channel or music (c,m): ").lower()
+    if vidType == "c":
         name = getYoutuber()
         goToYoutubeLink(name)
     if vidType == "m":
