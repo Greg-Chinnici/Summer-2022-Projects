@@ -52,7 +52,7 @@ def goToYoutubeLink(name):
 
 
 #songname : link , timestamp can be added also just add "&t=time" (seconds) at the end
-youtubeMusic = {"Juice WRLD FreeStyle Eminem Beats": "fSoT13msPe4&t" , "Juice WRLD freestyle 60 mins": "igc1wYW448w" , "Juice WRLD Black and White": "aQDhBNHBQUs" , "Pop Smoke Shake The Room": "zd8uWVh8b8k" , "Yeat Minions" : "7fX2kMaiMGI" , "Big Rap Playlist": "60-l6nNyK70&list=PLD3MHnA3bEH-lPyn3I5XCbab-ULH8wn9N"}
+youtubeMusic = {"Juice WRLD FreeStyle Eminem Beats": "fSoT13msPe4&t" , "Juice WRLD freestyle 60 mins": "igc1wYW448w" , "Juice WRLD Black and White": "aQDhBNHBQUs" , "Pop Smoke Shake The Room": "zd8uWVh8b8k" , "Yeat Minions" : "7fX2kMaiMGI" , "Big Rap Playlist": "60-l6nNyK70&list=PLD3MHnA3bEH-lPyn3I5XCbab-ULH8wn9N", "Trippie Red Sleepy Hallow": "1yzZwbFGLgo"}
 def getYoutubeMusic():
     userInput = -1
     while userInput not in range(len(youtubeMusic) + 1) or userInput == 0:
