@@ -11,10 +11,11 @@ use this: https://dev.twitch.tv/docs/api/reference#get-streams
     pulls the stream title, and 
     current game of specifeid streamers, with an if online check
     also gets top recommended youtube videos
+    
+make the chrome path wrok for macOS too
 """
 
 #I should make an option to just userInput the index instead of the full name
-
 streamerTwitch = ["valorant", "rocketleague", "playapex", "aceu", "tarik", "prod", "daltoosh", "iitztimmy", "shahzam", "hiko", "kitboga"]
 def getStreamer():
     userInput = ""
@@ -30,7 +31,7 @@ def getStreamer():
 def goToTwitchLink(name):
     chrome_path = '"C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe" %s' #file path to the Chrome app, otherwise it opens in IE
     webbrowser.get(chrome_path).open('twitch.tv/' + name)
-#TO GET TO TWITCH STREAMERS ONLY
+#! twitch only
 
 
 
@@ -63,7 +64,7 @@ def getYoutuber():
 def goToYoutubeLink(name):
     chrome_path = '"C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe" %s' #file path to the Chrome app, otherwise it opens in IE
     webbrowser.get(chrome_path).open('youtube.com/' + name)
-#Youtube only
+#! Youtube only
 
 
 
@@ -92,7 +93,7 @@ def goToYoutubeMusicLink(linkchars):
     chrome_path = '"C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe" %s' #file path to the Chrome app, otherwise it opens in IE
     timeStamp = 0 #starts at 0 seconds in
     webbrowser.get(chrome_path).open('youtube.com/watch?v=' + linkchars + "&t=" + str(timeStamp))
-#music only
+#! music only
 
 
 
@@ -103,13 +104,13 @@ def goToNetflix():
 
 
 
-allChannels = []#used for the surprise/random me hidden feature
-allChannels.extend(["netflix"])
-allChannels.extend(streamerTwitch)
-allChannels.extend(list(youtubeChannels.keys()))
-allChannels.extend(list(youtubeMusic.keys()))
-
-
+#! all channel stuff, for random and all
+allChannels = []
+def sortAllChannels(allChannels):
+    allChannels.extend(["netflix"])
+    allChannels.extend(streamerTwitch)
+    allChannels.extend(list(youtubeChannels.keys()))
+    allChannels.extend(list(youtubeMusic.keys()))
 
 
 def getAllChoice():
@@ -120,6 +121,7 @@ def getAllChoice():
 
 
 
+#! secondary senders
 def watchingYoutube():
     vidType = ""
     while vidType != "c" and vidType != "m":
@@ -157,12 +159,13 @@ def watchingAllChoice():
 
 
 
+#! main function
 watching = input("What do you want to watch (youtube, twitch, netflix)?: ").lower()#"surprise" is the secret word
+sortAllChannels(allChannels)
 if watching == "netflix":
     goToNetflix()
 elif watching == "twitch":
-    name = getStreamer()
-    goToTwitchLink(name)
+    goToTwitchLink(getStreamer())
 elif watching == "youtube":
     watchingYoutube()
 elif watching == "random" or watching == "surprise":
