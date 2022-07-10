@@ -14,6 +14,14 @@ use this: https://dev.twitch.tv/docs/api/reference#get-streams
     
 make the chrome path wrok for macOS too
 """
+#! chrome path manual switch
+currentOS = "windows"
+if (currentOS == "windows"):
+    chrome_path = '"C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe" %s' #file path to the Chrome app, otherwise it opens in IE
+else:
+    chrome_path = "whatever the macOS path is"#!do this later
+
+
 
 #I should make an option to just userInput the index instead of the full name
 streamerTwitch = ["valorant", "rocketleague", "playapex", "aceu", "tarik", "prod", "daltoosh", "iitztimmy", "shahzam", "hiko", "kitboga"]
@@ -29,7 +37,6 @@ def getStreamer():
     return userInput
 
 def goToTwitchLink(name):
-    chrome_path = '"C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe" %s' #file path to the Chrome app, otherwise it opens in IE
     webbrowser.get(chrome_path).open('twitch.tv/' + name)
 #! twitch only
 
@@ -62,7 +69,6 @@ def getYoutuber():
     return userInput
 
 def goToYoutubeLink(name):
-    chrome_path = '"C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe" %s' #file path to the Chrome app, otherwise it opens in IE
     webbrowser.get(chrome_path).open('youtube.com/' + name)
 #! Youtube only
 
@@ -90,7 +96,6 @@ def getYoutubeMusic():
     return list(youtubeMusic.values())[userInput - 1]
 
 def goToYoutubeMusicLink(linkchars):
-    chrome_path = '"C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe" %s' #file path to the Chrome app, otherwise it opens in IE
     timeStamp = 0 #starts at 0 seconds in
     webbrowser.get(chrome_path).open('youtube.com/watch?v=' + linkchars + "&t=" + str(timeStamp))
 #! music only
@@ -98,9 +103,8 @@ def goToYoutubeMusicLink(linkchars):
 
 
 def goToNetflix():
-    chrome_path = '"C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe" %s' #file path to the Chrome app, otherwise it opens in IE
     webbrowser.get(chrome_path).open("netflix.com/browse/m/continue-watching")
-#netflix
+#!netflix
 
 
 
