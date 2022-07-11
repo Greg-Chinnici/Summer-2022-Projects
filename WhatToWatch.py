@@ -19,7 +19,7 @@ currentOS = "windows"
 if (currentOS == "windows"):
     chrome_path = '"C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe" %s' #file path to the Chrome app, otherwise it opens in IE
 else:
-    chrome_path = "whatever the macOS path is"#!do this later
+    chrome_path = "/Applications/Google\ Chrome.app"
 
 
 
