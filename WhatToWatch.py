@@ -1,7 +1,7 @@
 import webbrowser
 import random
 
-#main goal is to make a tv guide
+#main goal is to make a tv guide with some gui
 """
 PLAN:
 use this: https://dev.twitch.tv/docs/api/reference#get-streams
@@ -10,11 +10,8 @@ use this: https://dev.twitch.tv/docs/api/reference#get-streams
     
     pulls the stream title, and 
     current game of specifeid streamers, with an if online check
-    also gets top recommended youtube videos
-    
-make the chrome path wrok for macOS too
 """
-#! chrome path manual switch
+#! chrome path manual switch for differnt operating systems
 currentOS = "windows"
 if (currentOS == "windows"):
     chrome_path = '"C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe" %s' #file path to the Chrome app, otherwise it opens in IE
@@ -23,13 +20,13 @@ else:
 
 
 
-#I should make an option to just userInput the index instead of the full name
+#I should make an option to just make userInput the index instead of the full name
 streamerTwitch = ["valorant", "rocketleague", "playapex", "aceu", "tarik", "prod", "daltoosh", "iitztimmy", "shahzam", "hiko", "kitboga"]
 def getStreamer():
     userInput = ""
     while userInput not in streamerTwitch:
         for name in streamerTwitch:
-            print(name)#this is where I want to use the isLive authenitcation
+            print(name)#this is where I want to use the isLive authenitcation as bool to only display live streamers
         userInput = input("What stream do you want to watch: ")
         userInput = userInput.lower()
         if userInput == "random":
@@ -39,10 +36,11 @@ def getStreamer():
 def goToTwitchLink(name):
     webbrowser.get(chrome_path).open('twitch.tv/' + name)
 #! twitch only
+#CharlieIsMyDog+1729
 
 
 
-#name : actual link address , I could also add thier main video type ie: valorant, coding, bored watch
+#name : actual link address , I could also add their main video type ex: valorant, coding, bored watch
 youtubeChannels = {#had to include the "c/" and "user/" because of legacy accounts
     "Linus Tech Tips": "c/LinusTechTips", 
     "Tom Scott": "c/TomScottGo",
@@ -53,7 +51,7 @@ youtubeChannels = {#had to include the "c/" and "user/" because of legacy accoun
     "direwolf20": "user/direwolf20",
     "Binging with Babish": "c/bingingwithbabish",
     "Sebastian Lague": "c/SebastianLague",
-    "MichaelReeves": "c/MichaelReeves",
+    "Michael Reeves": "c/MichaelReeves",
     "Prod Valorant": "channel/UC_L9jCsleYEyLhycNvj-6Gw"
     }
 def getYoutuber():
@@ -98,24 +96,23 @@ def getYoutubeMusic():
 def goToYoutubeMusicLink(linkchars):
     timeStamp = 0 #starts at 0 seconds in
     webbrowser.get(chrome_path).open('youtube.com/watch?v=' + linkchars + "&t=" + str(timeStamp))
-#! music only
+#! youtube music only
 
 
 
 def goToNetflix():
     webbrowser.get(chrome_path).open("netflix.com/browse/m/continue-watching")
-#!netflix
+#! netflix
 
 
 
-#! all channel stuff, for random and all
+#! all channel stuff, for "random" and "all" commands
 allChannels = []
 def sortAllChannels(allChannels):
     allChannels.extend(["netflix"])
     allChannels.extend(streamerTwitch)
     allChannels.extend(list(youtubeChannels.keys()))
     allChannels.extend(list(youtubeMusic.keys()))
-
 
 def getAllChoice():
     for cnt , item in enumerate(allChannels, start = 1):
@@ -125,7 +122,7 @@ def getAllChoice():
 
 
 
-#! secondary senders
+#! secondary switches
 def watchingYoutube():
     vidType = ""
     while vidType != "c" and vidType != "m":
@@ -164,7 +161,7 @@ def watchingAllChoice():
 
 
 #! main function
-watching = input("What do you want to watch (youtube, twitch, netflix)?: ").lower()#"surprise" is the secret word
+watching = input("What do you want to watch (youtube, twitch, netflix)?: ").lower()#"surprise" , "random" are secret words
 sortAllChannels(allChannels)
 if watching == "netflix":
     goToNetflix()
@@ -174,5 +171,5 @@ elif watching == "youtube":
     watchingYoutube()
 elif watching == "random" or watching == "surprise":
     watchingRandom()
-else:#All Choice Activates
+else:#All Choice Activates if nothing else hits
     watchingAllChoice()
