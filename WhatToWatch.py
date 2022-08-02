@@ -1,7 +1,7 @@
 import webbrowser
 import random
 
-#main goal is to make a tv guide with some gui
+#main goal is to make a tv guide with some gui using pygame
 """
 PLAN:
 use this: https://dev.twitch.tv/docs/api/reference#get-streams
@@ -9,14 +9,14 @@ use this: https://dev.twitch.tv/docs/api/reference#get-streams
     https://github.com/Teekeks/pyTwitchAPI
     
     pulls the stream title, and 
-    current game of specifeid streamers, with an if online check
+    current game of specifeid streamers, only if online after a check
 """
 #! chrome path manual switch for differnt operating systems
-currentOS = "windows"
+currentOS = "mac"
 if (currentOS == "windows"):
     chrome_path = '"C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe" %s' #file path to the Chrome app, otherwise it opens in IE
 else:
-    chrome_path = "/Applications/Google\ Chrome.app"
+    chrome_path = "/Applications/Google Chrome.app"#? STILL WONT WORK
 
 
 
