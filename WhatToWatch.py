@@ -1,6 +1,7 @@
 import webbrowser
 import random
 
+
 #main goal is to make a tv guide with some gui using pygame
 """
 PLAN:
@@ -16,7 +17,8 @@ currentOS = "mac"
 if (currentOS == "windows"):
     chrome_path = '"C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe" %s' #file path to the Chrome app, otherwise it opens in IE
 else:
-    chrome_path = "/Applications/Google Chrome.app"#? STILL WONT WORK
+    chrome_path = "'open -a /Applications/Google\ Chrome.app %s'"#? STILL WONT WORK
+    #for mac "webbrowser.open_new_tab("http://www.google.com")"#?
 
 
 
