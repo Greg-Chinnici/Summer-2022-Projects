@@ -1,6 +1,16 @@
 import tkinter as tk
 from tkinter.filedialog import askopenfilename, asksaveasfilename
 
+def saveFile():
+    #save the current file as a new file, new name
+    filepath = asksaveasfilename(defaultextension="txt",filetypes=[("Text Files", "*.txt"), ("Markdown Files", "*.md*")],)
+    if not filepath:
+        return
+    with open(filepath, "w") as output_file:
+        text = txt_edit.get(1.0, tk.END)
+        output_file.write(text)
+    screen.title(f"GregEditor >> {filepath}")
+
 def openFile():
     #opens file
     filepath = askopenfilename(filetypes=[("Text Files", "*.txt"), ("Markdown Files", "*.md*")])
@@ -10,16 +20,6 @@ def openFile():
     with open(filepath, "r") as input_file:
         text = input_file.read()
         txt_edit.insert(tk.END, text)
-    screen.title(f"GregEditor >> {filepath}")
-
-def saveFile():
-    #save the current file as a new file, new name
-    filepath = asksaveasfilename(defaultextension="txt",filetypes=[("Text Files", "*.txt"), ("Markdown Files", "*.md*")],)
-    if not filepath:
-        return
-    with open(filepath, "w") as output_file:
-        text = txt_edit.get(1.0, tk.END)
-        output_file.write(text)
     screen.title(f"GregEditor >> {filepath}")
 
 screen = tk.Tk()
