@@ -3,8 +3,7 @@ from tkinter.filedialog import askopenfilename, asksaveasfilename
 
 def openFile():
     #opens file
-    filepath = askopenfilename(
-        filetypes=[("Text Files", "*.txt"), ("Markdown Files", "*.md*")])
+    filepath = askopenfilename(filetypes=[("Text Files", "*.txt"), ("Markdown Files", "*.md*")])
     if not filepath:
         return
     txt_edit.delete(1.0, tk.END)
@@ -15,10 +14,7 @@ def openFile():
 
 def saveFile():
     #save the current file as a new file, new name
-    filepath = asksaveasfilename(
-        defaultextension="txt",
-        filetypes=[("Text Files", "*.txt"), ("Markdown Files", "*.md*")],
-    )
+    filepath = asksaveasfilename(defaultextension="txt",filetypes=[("Text Files", "*.txt"), ("Markdown Files", "*.md*")],)
     if not filepath:
         return
     with open(filepath, "w") as output_file:
@@ -29,7 +25,7 @@ def saveFile():
 screen = tk.Tk()
 screen.title("GregEditor")
 screen.rowconfigure(0, minsize=800, weight=1)
-screen.columnconfigure(1, minsize=800, weight=1)
+screen.columnconfigure(1, minsize=400, weight=1)
 
 txt_edit = tk.Text(screen)
 fr_buttons = tk.Frame(screen, relief=tk.RAISED, bd=3)
